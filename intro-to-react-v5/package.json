@@ -1,0 +1,63 @@
+{
+	"name": "fm-reactv5",
+	"version": "1.0.0",
+	"description": "Tutorial from FrontendMasters",
+	"main": "index.js",
+	"scripts": {
+		"build": "parcel build --public-url ./dist/ src/index.html",
+		"clear-build-cache": "rm -rf .cache/ dist/",
+		"dev": "parcel src/index.html",
+		"dev:mock": "cross-env PET_MOCK=mock npm run dev",
+		"format": "prettier \"src/**/*.{js,html}\" --write",
+		"lint": "eslint \"src/**/*.{js, jsx}\" --quiet",
+		"start": "npm run build && babel-node server/index.js",
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://MercadieN@bitbucket.org/MercadieN/fm-reactv5.git"
+	},
+	"keywords": [],
+	"author": "",
+	"license": "ISC",
+	"homepage": "https://bitbucket.org/MercadieN/fm-reactv5#readme",
+	"devDependencies": {
+		"@babel/core": "^7.5.5",
+		"@babel/plugin-proposal-class-properties": "^7.5.5",
+		"@babel/preset-env": "^7.5.5",
+		"@babel/preset-react": "^7.0.0",
+		"babel-eslint": "^10.0.2",
+		"cross-env": "^5.2.0",
+		"eslint": "^6.2.0",
+		"eslint-config-prettier": "^6.0.0",
+		"eslint-plugin-import": "^2.18.2",
+		"eslint-plugin-jsx-a11y": "^6.2.3",
+		"eslint-plugin-react": "^7.14.3",
+		"eslint-plugin-react-hooks": "^1.7.0",
+		"parcel-bundler": "^1.12.3",
+		"prettier": "^1.18.2"
+	},
+	"dependencies": {
+		"@babel/node": "^7.6.1",
+		"@emotion/babel-preset-css-prop": "^10.0.17",
+		"@emotion/core": "^10.0.17",
+		"@frontendmasters/pet": "^1.0.3",
+		"@reach/router": "^1.2.1",
+		"babel-cli": "^6.26.0",
+		"express": "^4.17.1",
+		"moment": "^2.24.0",
+		"react": "^16.9.0",
+		"react-dom": "^16.9.0"
+	},
+	"browserslist": [
+		"last 2 Chrome versions",
+		"last 2 ChromeAndroid versions",
+		"last 2 Firefox versions",
+		"last 2 FirefoxAndroid versions",
+		"last 2 Safari versions",
+		"last 2 iOS versions",
+		"last 2 Edge versions",
+		"last 2 Opera versions",
+		"last 2 OperaMobile versions"
+	]
+}
