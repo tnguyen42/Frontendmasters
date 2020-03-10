@@ -1,0 +1,21 @@
+{
+  "name": "intro-to-nodejs",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Scott Moss <willscottmoss@gmail.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "jest": "^23.6.0"
+  },
+  "scripts": {
+    "test": "jest"
+  },
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "commander": "^4.1.1",
+    "express": "^4.16.3",
+    "inquirer": "^7.0.6",
+    "mime": "^2.4.4",
+    "morgan": "^1.9.1"
+  }
+}
