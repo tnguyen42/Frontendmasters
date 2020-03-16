@@ -8,10 +8,20 @@ const fs = require("fs");
 const Transform = require("stream").Transform;
 const zlib = require("zlib");
 
+const CAF = require("caf");
+
 const args = require("minimist")(process.argv.slice(2), {
 	boolean: ["help", "in", "out", "compress", "uncompress"],
 	string: ["file"]
 });
+
+processFile = CAF(processFile);
+
+function streamComplete (stream) {
+	return new Promise(function c (res) {
+		stream.on("end", res);
+	});
+}
 
 const BASE_PATH = path.resolve(
 	process.env.BASE_PATH || __dirname
@@ -27,15 +37,24 @@ if (process.env.HELLO) {
 if (args.help) {
 	printHelp();
 } else if (args.in || args._.includes("-")) {
-	processFile(process.stdin);
+	let tooLong = CAF.timeout(13, "Took too long!");
+
+	processFile(tooLong, process.stdin)
+		.catch(err);
 } else if (args.file) {
 	let stream = fs.createReadStream(path.join(BASE_PATH, args.file));
-	processFile(stream);
+
+	let tooLong = CAF.timeout(13, "Took too long!");
+
+	processFile(tooLong, stream).then(function () {
+		console.log("Complete!");
+	})
+		.catch(error);
 } else {
 	error("Incorrect usage.", true);
 }
 
-function processFile (inStream) {
+function *processFile (signal, inStream) {
 	var outStream = inStream;
 
 	if (args.uncompress) {
@@ -66,6 +85,13 @@ function processFile (inStream) {
 		targetStream = fs.createWriteStream(OUTFILE);
 	}
 	outStream.pipe(targetStream);
+
+	signal.pr.catch(function f () {
+		outStream.unpipe(targetStream);
+		outStream.destroy();
+	});
+
+	yield streamComplete(outStream);
 }
 
 function error (msg, includeHelp = false) {
