@@ -98,9 +98,9 @@ function once(func) {
 const onceFunc = once(addByTwo);
 
 // UNCOMMENT THESE TO TEST YOUR WORK!
-// console.log(onceFunc(4));  //should log 6
-// console.log(onceFunc(10));  //should log 6
-// console.log(onceFunc(9001));  //should log 6
+console.log(onceFunc(4));  //should log 6
+console.log(onceFunc(10));  //should log 6
+console.log(onceFunc(9001));  //should log 6
 
 
 function after(count, func) {
